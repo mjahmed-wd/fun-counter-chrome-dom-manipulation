@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "React Content Script",
+  "version": "0.0.1",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "run_at": "document_end",
+      "css": ["./static/css/main.css"],
+      "js": ["./static/js/main.js","./content/content.js"],
+      "media": []
+    }
+  ],
+  "background": {
+    "service_worker": "./background/background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

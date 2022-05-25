@@ -1,0 +1,30 @@
+#funCounterRoot {
+  background-color: #fcfcfc;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: 100vh;
+  z-index: 9999999!important;
+}
+#funCounterRoot .counter_title {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0 1rem;
+}
+
+#funCounterRoot .counter_buttons {
+  margin: 0 1rem;
+}
+
+#funCounterRoot .counter_btn {
+  font-size: 1.5em;
+  color: #333;
+  margin: 0.5rem;
+  border: none;
+}
+
+button {
+  font-size: calc(10px + 2vmin);
+  margin: 10px;
+}
