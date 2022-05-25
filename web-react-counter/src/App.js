@@ -2,14 +2,22 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const initialCount = +localStorage.getItem('funCounterValue') || 0;
-  const [count, setCount] = useState(initialCount);
+  const [count, setCount] = useState(0);
 
+  const onStorageUpdate = (e) => {
+    const { key, newValue } = e;
+    if (key === "funCounterValue") {
+      setCount(newValue);
+    }
+  };
 
   useEffect(() => {
-    count >= 0 && localStorage.setItem("funCounterValue", count)
-
-  }, [count])
+    setCount(+localStorage.getItem("funCounterValue") || 0);
+    window.addEventListener("storage", onStorageUpdate);
+    return () => {
+      window.removeEventListener("storage", onStorageUpdate);
+    };
+  }, []);
 
   return (
     <>
@@ -17,18 +25,22 @@ function App() {
         Clicked {count} {`${count > 1 ? 'times' : 'time'}`}
       </h2>
       <div className="counter_buttons">
-        <button type="button" className="counter_btn" onClick={() => setCount((count) => count + 1)}>
+        
+        <button type="button" className="counter_btn" onClick={() => { setCount((count) => +count + 1); localStorage.setItem("funCounterValue", +count + 1); }}>
           +
         </button>
+
         <button
           type="button" className="counter_btn"
-          onClick={() => setCount((count) => (count ? count - 1 : 0))}
+          onClick={() => { setCount((count) => (count ? +count - 1 : 0)); localStorage.setItem("funCounterValue", count ? +count - 1 : 0); }}
         >
           -
         </button>
-        <button type="button" className="counter_btn" onClick={() => setCount(0)}>
+
+        <button type="button" className="counter_btn" onClick={() => { setCount(0); localStorage.setItem("funCounterValue", 0); }}>
           reset
         </button>
+
       </div>
     </>
   );

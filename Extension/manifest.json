@@ -9,7 +9,6 @@
     "service_worker": "./background/background.js"
   },
   "action": {
-   
     "default_title": "Fun Counter"
   },
   "icons": {
